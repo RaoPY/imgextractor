@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: false}));
 
 var imgs = [];
 async function start(url) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({"args": ["--no-sandbox", "--disable-setuid-sandbox"]});
     const page = await browser.newPage();
     await page.goto(url);
     imgs = await page.evaluate(() => {
